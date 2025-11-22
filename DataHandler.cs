@@ -9,7 +9,6 @@ namespace MissSportInfoUI
 {
     public static class DataHandler
     {
-        static List<EventInfo> sportInfos = new List<EventInfo>();
         static JSONVenueClass.VenueObj venueObj;
         static JSONEventClass.EventObj eventObj;
 
@@ -76,6 +75,44 @@ namespace MissSportInfoUI
             return venues;
         }
 
-        public static List<EventInfo>
+        public static List<EventInfo> processData(string venue, string sport, string day, string exWord)
+        {
+            //general variables
+            bool controlFlag = true;
+            List<EventInfo> infoTable = new List<EventInfo>();
+            string[] exWords = exWord.Split(';');
+            List<JSONEventClass.Event> targetedVenueEvents = new List<JSONEventClass.Event>();
+            string venueText, eventText, dayText, timeText;
+
+            //matching venue
+            if (venue.Equals("(All)"))
+            {
+                foreach (JSONEventClass.CenterEvent centreEvent in eventObj.body.center_events)
+                {
+                    targetedVenueEvents.AddRange(centreEvent.events);
+                }
+            }
+            else
+            {
+                foreach (JSONEventClass.CenterEvent centreEvent in eventObj.body.center_events)
+                {
+                    //matching venue
+                    if (venue.Equals(centreEvent.center_name))
+                    {
+                        targetedVenueEvents.AddRange(centreEvent.events);
+                    }
+                }
+            }
+
+            foreach (JSONEventClass.Event targetedEvent in targetedVenueEvents) {
+                venueText = targetedEvent.facilities.First<JSONEventClass.Facility>().center_name;
+                eventText = targetedEvent.title;
+                //TODO: filter day
+
+                //TODO: filter by excluded words
+            }
+
+            return infoTable;
+        }
     }
 }

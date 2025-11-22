@@ -46,6 +46,7 @@ namespace MissSportInfoUI
             DayComboBox = new ComboBox();
             DayText = new Label();
             SportInfoView = new DataGridView();
+            DayDescription = new Label();
             InputSectionPanel.SuspendLayout();
             ((ISupportInitialize)SportInfoView).BeginInit();
             SuspendLayout();
@@ -81,6 +82,7 @@ namespace MissSportInfoUI
             // InputSectionPanel
             // 
             InputSectionPanel.BackColor = SystemColors.Control;
+            InputSectionPanel.Controls.Add(DayDescription);
             InputSectionPanel.Controls.Add(VenueComboBox);
             InputSectionPanel.Controls.Add(VenueText);
             InputSectionPanel.Controls.Add(SearchButton);
@@ -201,6 +203,15 @@ namespace MissSportInfoUI
             SportInfoView.Size = new Size(715, 421);
             SportInfoView.TabIndex = 4;
             // 
+            // DayDescription
+            // 
+            DayDescription.AutoSize = true;
+            DayDescription.Location = new Point(332, 97);
+            DayDescription.Name = "DayDescription";
+            DayDescription.Size = new Size(315, 15);
+            DayDescription.TabIndex = 18;
+            DayDescription.Text = "(This searchs the events of today and the following 6 days)";
+            // 
             // MainUI
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -241,5 +252,6 @@ namespace MissSportInfoUI
         private DataGridView SportInfoView;
         private ComboBox VenueComboBox;
         private Label VenueText;
+        private Label DayDescription;
     }
 }

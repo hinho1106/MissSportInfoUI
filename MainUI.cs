@@ -88,7 +88,7 @@ namespace MissSportInfoUI
                 string excludedWords = ExcludedWordTextBox.Text;
                 string venue = VenueComboBox.Text;
 
-                List<EventInfo> infoTable = new List<EventInfo>();
+                List<EventInfo> infoTable = DataHandler.processData(venue, sport, day, excludedWords);
          
 
                 //Print all info on DataGrid Table

@@ -37,16 +37,13 @@ namespace MissSportInfoUI
             SportTextBox = new TextBox();
             SportDescription = new Label();
             InputSectionPanel = new Panel();
+            DayDescription = new Label();
             VenueComboBox = new ComboBox();
             VenueText = new Label();
             SearchButton = new Button();
-            ExcludedWordDescription = new Label();
-            ExcludedWordTextBox = new TextBox();
-            ExcludedWordText = new Label();
             DayComboBox = new ComboBox();
             DayText = new Label();
             SportInfoView = new DataGridView();
-            DayDescription = new Label();
             InputSectionPanel.SuspendLayout();
             ((ISupportInitialize)SportInfoView).BeginInit();
             SuspendLayout();
@@ -68,7 +65,6 @@ namespace MissSportInfoUI
             SportTextBox.Name = "SportTextBox";
             SportTextBox.Size = new Size(141, 33);
             SportTextBox.TabIndex = 1;
-            SportTextBox.Text = "Pickleball";
             // 
             // SportDescription
             // 
@@ -86,9 +82,6 @@ namespace MissSportInfoUI
             InputSectionPanel.Controls.Add(VenueComboBox);
             InputSectionPanel.Controls.Add(VenueText);
             InputSectionPanel.Controls.Add(SearchButton);
-            InputSectionPanel.Controls.Add(ExcludedWordDescription);
-            InputSectionPanel.Controls.Add(ExcludedWordTextBox);
-            InputSectionPanel.Controls.Add(ExcludedWordText);
             InputSectionPanel.Controls.Add(DayComboBox);
             InputSectionPanel.Controls.Add(DayText);
             InputSectionPanel.Controls.Add(SportDescription);
@@ -98,6 +91,15 @@ namespace MissSportInfoUI
             InputSectionPanel.Name = "InputSectionPanel";
             InputSectionPanel.Size = new Size(715, 208);
             InputSectionPanel.TabIndex = 3;
+            // 
+            // DayDescription
+            // 
+            DayDescription.AutoSize = true;
+            DayDescription.Location = new Point(332, 97);
+            DayDescription.Name = "DayDescription";
+            DayDescription.Size = new Size(315, 15);
+            DayDescription.TabIndex = 18;
+            DayDescription.Text = "(This searchs the events of today and the following 6 days)";
             // 
             // VenueComboBox
             // 
@@ -137,34 +139,6 @@ namespace MissSportInfoUI
             SearchButton.Click += SearchButton_Click;
             SearchButton.Paint += button_Paint;
             // 
-            // ExcludedWordDescription
-            // 
-            ExcludedWordDescription.AutoSize = true;
-            ExcludedWordDescription.Location = new Point(202, 167);
-            ExcludedWordDescription.Name = "ExcludedWordDescription";
-            ExcludedWordDescription.Size = new Size(110, 15);
-            ExcludedWordDescription.TabIndex = 14;
-            ExcludedWordDescription.Text = "(use ; as separators)";
-            // 
-            // ExcludedWordTextBox
-            // 
-            ExcludedWordTextBox.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            ExcludedWordTextBox.Location = new Point(191, 131);
-            ExcludedWordTextBox.Name = "ExcludedWordTextBox";
-            ExcludedWordTextBox.Size = new Size(141, 33);
-            ExcludedWordTextBox.TabIndex = 13;
-            ExcludedWordTextBox.Text = "Family;LGBT";
-            // 
-            // ExcludedWordText
-            // 
-            ExcludedWordText.AutoSize = true;
-            ExcludedWordText.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            ExcludedWordText.Location = new Point(19, 134);
-            ExcludedWordText.Name = "ExcludedWordText";
-            ExcludedWordText.Size = new Size(159, 25);
-            ExcludedWordText.TabIndex = 12;
-            ExcludedWordText.Text = "Excluded Word(s)";
-            // 
             // DayComboBox
             // 
             DayComboBox.AllowDrop = true;
@@ -172,7 +146,6 @@ namespace MissSportInfoUI
             DayComboBox.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             DayComboBox.FormattingEnabled = true;
             DayComboBox.ImeMode = ImeMode.NoControl;
-            DayComboBox.Items.AddRange(new object[] { "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday" });
             DayComboBox.Location = new Point(370, 61);
             DayComboBox.MaxDropDownItems = 4;
             DayComboBox.Name = "DayComboBox";
@@ -202,15 +175,6 @@ namespace MissSportInfoUI
             SportInfoView.RowHeadersWidth = 70;
             SportInfoView.Size = new Size(715, 421);
             SportInfoView.TabIndex = 4;
-            // 
-            // DayDescription
-            // 
-            DayDescription.AutoSize = true;
-            DayDescription.Location = new Point(332, 97);
-            DayDescription.Name = "DayDescription";
-            DayDescription.Size = new Size(315, 15);
-            DayDescription.TabIndex = 18;
-            DayDescription.Text = "(This searchs the events of today and the following 6 days)";
             // 
             // MainUI
             // 
@@ -243,10 +207,7 @@ namespace MissSportInfoUI
         private Panel InputSectionPanel;
         private ComboBox DayComboBox;
         private Label DayText;
-        private TextBox ExcludedWordTextBox;
-        private Label ExcludedWordText;
         private Button SearchButton;
-        private Label ExcludedWordDescription;
 
         private BindingList<EventInfo> SportList = new BindingList<EventInfo>();
         private DataGridView SportInfoView;

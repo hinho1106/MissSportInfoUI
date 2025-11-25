@@ -28,6 +28,13 @@ namespace MissSportInfoUI
                 VenueComboBox.Items.Add(venue);
             }
 
+            //Update Items in Day Combobox
+            DateTime today = DateTime.Now;
+            for(int i = 0; i<7; i++)
+            {
+                DayComboBox.Items.Add(today.AddDays(i).ToString("yyyy-MM-dd"));
+            }
+
         }
 
         private async void SearchButton_Click(object sender, EventArgs e)
@@ -85,10 +92,9 @@ namespace MissSportInfoUI
                 //Pass UI text to DataHandler and process data
                 string sport = SportTextBox.Text;
                 string day = DayComboBox.Text;
-                string excludedWords = ExcludedWordTextBox.Text;
                 string venue = VenueComboBox.Text;
 
-                List<EventInfo> infoTable = DataHandler.processData(venue, sport, day, excludedWords);
+                List<EventInfo> infoTable = DataHandler.processData(venue, sport, day);
          
 
                 //Print all info on DataGrid Table

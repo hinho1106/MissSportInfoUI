@@ -75,14 +75,14 @@ namespace MissSportInfoUI
             return venues;
         }
 
-        public static List<EventInfo> processData(string venue, string sport, string day, string exWord)
+        public static List<EventInfo> processData(string venue, string sport, string day)
         {
             //general variables
             bool controlFlag = true;
             List<EventInfo> infoTable = new List<EventInfo>();
-            string[] exWords = exWord.Split(';');
             List<JSONEventClass.Event> targetedVenueEvents = new List<JSONEventClass.Event>();
             string venueText, eventText, dayText, timeText;
+            string startTime, endTime;
 
             //matching venue
             if (venue.Equals("(All)"))
@@ -107,9 +107,27 @@ namespace MissSportInfoUI
             foreach (JSONEventClass.Event targetedEvent in targetedVenueEvents) {
                 venueText = targetedEvent.facilities.First<JSONEventClass.Facility>().center_name;
                 eventText = targetedEvent.title;
-                //TODO: filter day
+                startTime = targetedEvent.start_time;
+                startTime = startTime.Substring(0, startTime.Length - 3);
+                endTime = targetedEvent.end_time;
+                endTime = endTime.Substring(0, endTime.Length - 3);
+                dayText = startTime.Split(" ")[0];
+                timeText = startTime.Split(" ")[1] + " - " + endTime.Split(" ")[1];
 
-                //TODO: filter by excluded words
+                //filter day
+                if (!day.Equals(dayText))
+                {
+                    continue;
+                }
+
+                //filter by search words
+                if (!eventText.Contains(sport))
+                {
+                    continue;
+                }
+
+                infoTable.Add(new EventInfo(){
+                    venue = venueText, events = eventText, day = dayText, time = timeText });
             }
 
             return infoTable;
